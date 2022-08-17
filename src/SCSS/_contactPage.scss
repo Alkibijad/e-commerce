@@ -9,6 +9,10 @@
 
         form {
             gap: 3px;
+            p{
+                display: flex;
+                align-items: center;
+            }
 
             &>*:not(p){
                 border-radius: 10px;
@@ -26,15 +30,14 @@
                 "fn ls"
                 "email email"
                 "message message";
-                input {
 
+            input {
                 &[name="firstname"] {
                     grid-area: fn;
                    
                 }
 
                 &[name="lastname"] {
-                   
                     grid-area: ls;
                 }
 
@@ -48,8 +51,6 @@
                 grid-area: message;
                 height: 9em;
                 resize: none;
-            
-                
             }
 
         }
@@ -99,4 +100,5 @@
 
 
 }
+
 

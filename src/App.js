@@ -12,7 +12,6 @@ import ShopCart from "./components/ShopCart";
 
 //import data
 import db from "./db";
-import { renderIntoDocument } from "react-dom/test-utils";
 
 //import hooks
 export const dataContext = createContext();
@@ -37,7 +36,7 @@ function reducer(cartProducts, action) {
     case "delete_item":
       const copyCartr = [...cartProducts];
       copyCartr.splice(action.payload, 1);
-      return [...copyCartr];
+      return [...copyCartr];//spread operator
     case "setCart":
       return [...action.payload]
   }

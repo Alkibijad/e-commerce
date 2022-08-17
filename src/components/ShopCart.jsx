@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { dataContext } from "../App";
 import Header from "./Header";
 
+
+
 function ShopCart() {
   const { cartProducts, dispatch } = useContext(dataContext);
 
@@ -25,7 +27,10 @@ function ShopCart() {
 
   function changeCount(num, index) {
     let copyCartProducts = [...cartProducts];
+
     copyCartProducts[index].count += num;
+
+    
     if (copyCartProducts[index].count === 0) {
       copyCartProducts.splice(index, 1);
     }
@@ -35,7 +40,7 @@ function ShopCart() {
 
   function noItems() {
     return (
-      <div>
+      <div className="noItems">
         <p>No items in your cart</p>
         <Link to="/Shop">Go back to shoping</Link>
       </div>
@@ -59,21 +64,9 @@ function ShopCart() {
                   <Link to={"/Shop/" + el.id}>{el.title}</Link>
                   <p>$ {el.price}</p>
                   <div className="count">
-                    <button
-                      onClick={() => {
-                        changeCount(-1, index);
-                      }}
-                    >
-                      -
-                    </button>
+                    <button onClick={() => { changeCount(-1, index)}}> - </button>
                     <p>{el.count}</p>
-                    <button
-                      onClick={() => {
-                        changeCount(1, index);
-                      }}
-                    >
-                      +
-                    </button>
+                    <button onClick={() => {changeCount(1, index)}}> + </button>
                   </div>
 
                   <button
