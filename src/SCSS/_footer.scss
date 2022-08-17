@@ -1,0 +1,35 @@
+.footer {
+    margin-top: 10rem;
+    padding: 2rem;
+
+    div img {
+        width: 5rem;
+    }
+
+    a,
+    li {
+        color: white;
+    }
+
+    display: grid;
+    grid-template-columns: 6fr 3fr 3fr;
+    background-color: #000;
+    color: white;
+    font-size: 1.5rem;
+
+    &_menu {
+
+        display: flex;
+        flex-direction: column;
+
+
+
+
+    }
+
+
+
+
+
+
+}

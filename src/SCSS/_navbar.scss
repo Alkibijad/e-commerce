@@ -1,0 +1,21 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-height: 10rem;
+    &_items{
+       
+        display: flex;
+        justify-content: space-evenly;
+        a{
+            margin: 0 5px;
+        }
+        
+    }
+    img{
+        max-width: 10rem;
+    }
+    a{
+       font-size: 2rem;
+    }
+}
