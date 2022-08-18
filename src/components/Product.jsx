@@ -14,7 +14,7 @@ function Product({ product }) {
       <Link className="top-sellers_btn" to={"/Shop/" + product.id}>
         Read more
       </Link>
-      <BtnAddToCart selectedProduct={selectedProduct}/>
+      <BtnAddToCart/>
      
     </div>
   );

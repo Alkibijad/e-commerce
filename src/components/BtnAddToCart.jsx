@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { dataContext } from "../App";
 
-function BtnAddToCart({ selectedProduct }) {
-  const { dispatch } = useContext(dataContext);
+function BtnAddToCart() {
+  const { dispatch, selectedProduct } = useContext(dataContext);
   const [btnSwitch, setBtnSwitch] = useState(false);
 
   useEffect(() => {

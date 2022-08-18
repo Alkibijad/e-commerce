@@ -56,7 +56,7 @@ function ProductDetails() {
             <p>{selectedProduct.rating}</p>
           </div>
           <p>{selectedProduct.description}</p>
-          <BtnAddToCart /> 
+          <BtnAddToCart  /> 
         </div>
       </div>
     );
