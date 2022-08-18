@@ -11,6 +11,7 @@ function ShopCart() {
 
   useEffect(() => {
     totalCartPrice();
+    console.log(cartProducts);
   }, [cartProducts]);
 
   function totalCartPrice() {

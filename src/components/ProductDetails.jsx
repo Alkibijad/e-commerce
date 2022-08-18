@@ -4,16 +4,20 @@ import { useEffect, useState, useContext, useRef } from "react";
 import Header from "./Header";
 import BtnAddToCart from "./BtnAddToCart";
 
+
 function ProductDetails() {
-  const { db, dispatchSelected, selectedProduct } = useContext(dataContext);
+  const {dispatchSelected, selectedProduct} = useContext(dataContext);
   const thumbnail = useRef();
-  const { id } = useParams();
- 
-  useEffect(() => {
-    findProduct();
-  }, []);
+  const { id } = useParams()
+  
+  
+
+  useEffect(() => { 
+    findProduct()
+  },[selectedProduct])
 
   function findProduct() {
+ 
     dispatchSelected({
       type: "set_selected_product",
       payload: parseInt(id),
@@ -56,7 +60,7 @@ function ProductDetails() {
             <p>{selectedProduct.rating}</p>
           </div>
           <p>{selectedProduct.description}</p>
-          <BtnAddToCart id={selectedProduct.id} /> 
+          <BtnAddToCart id={selectedProduct.id} />
         </div>
       </div>
     );

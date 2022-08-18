@@ -19,20 +19,17 @@ export const dataContext = createContext();
 function reducer(cartProducts, action) {
   switch (action.type) {
     case "add_to_cart":
-      const copyCart = [...cartProducts];
-      let productIndex = null;
-      const productFounded = cartProducts.find((el, index) => {
-        productIndex = index;
-        return el.id === action.payload.id;
-      });
-
-      if (productFounded) {
-        copyCart[productIndex].count++;
-        return copyCart;
-      } else {
-        action.payload.count = 1;
-        return [...cartProducts, action.payload];
-      }
+    
+      const productFounded = db.find((el) => el.id === action.payload)
+      return [...cartProducts, productFounded]
+     
+      // if (productFounded) {
+      //   productFounded.count++;
+      //   return [...cartProducts];
+      // } else {
+      //   productFounded.count = 1;
+      //   return [...cartProducts, productFounded];
+      // }
 
     case "delete_item":
       const copyCartr = [...cartProducts];
@@ -55,9 +52,7 @@ function App() {
   const [cartProducts, dispatch] = useReducer(reducer, []);
   const [selectedProduct, dispatchSelected] = useReducer(reducerSelected, {})
 
-  useEffect(() => {
-  
-  }, [cartProducts]);
+
 
   return (
     <div className="App">

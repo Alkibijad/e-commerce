@@ -11,12 +11,9 @@ function TopSellers() {
 
   function getTopSix() {
     let copyDB = [...db];
-
     let topSix = [];
       for (let i = 0; i < 6; i++) {
-        
       let rand = Math.floor(Math.random() * copyDB.length);
-
       topSix.push(copyDB[rand]);
       copyDB.splice(rand, 1);
     }
