@@ -20,6 +20,9 @@ function ContactPage() {
     message: "",
   });
 
+  useEffect(() => {
+    console.log(inputValues)
+   },[inputValues])
   function setFormData(e) {
     let copyInputValues = { ...inputValues };
     copyInputValues[e.target.name] = e.target.value;

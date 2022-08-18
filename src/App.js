@@ -42,7 +42,9 @@ function reducer(cartProducts, action) {
 
 function reducerSelected(selectedProduct, action) {
   switch (action.type) { 
+    
     case "set_selected_product":
+      console.log(selectedProduct)
       return {...selectedProduct}, db.find((el) => el.id === action.payload)
   }
  }
