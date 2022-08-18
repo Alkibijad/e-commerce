@@ -1,7 +1,8 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 html {
@@ -10,8 +11,9 @@ html {
 
 body,
 a,
-li, .btn {
-  color: rgb(155, 51, 51);
+li,
+.btn {
+  color: #9b3333;
   font-size: 1.5rem;
 }
 
@@ -20,10 +22,17 @@ li, .btn {
   min-height: 100vh;
   height: 100%;
   margin: 0 auto;
-  background-color: rgb(250, 250, 250);
+  background-color: #fafafa;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 a {
@@ -36,43 +45,134 @@ li {
 }
 
 .btn {
+  position: relative;
+  background-image: -webkit-linear-gradient(345deg, rgba(66, 66, 66, 0.1), rgba(217, 255, 0, 0.5) 50%, rgba(80, 80, 80, 0.5) 50%);
+  background-image: -o-linear-gradient(345deg, rgba(66, 66, 66, 0.1), rgba(217, 255, 0, 0.5) 50%, rgba(80, 80, 80, 0.5) 50%);
   background-image: linear-gradient(105deg, rgba(66, 66, 66, 0.1), rgba(217, 255, 0, 0.5) 50%, rgba(80, 80, 80, 0.5) 50%);
   padding: 1rem 1.5rem;
   border-radius: 100px;
   border: none;
   margin: 5px 0;
+  overflow: hidden;
 }
-.btn:hover {
-  background-image: linear-gradient(105deg, rgba(66, 66, 66, 0.1), rgba(217, 255, 0, 0.5) 100%);
-  transition: all 2s;
+
+.btn span {
+  position: relative;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 0;
+  left: -55%;
+  height: 100%;
+  width: 100%;
+  background-color: green;
+  -webkit-transform: skewX(-15deg);
+      -ms-transform: skewX(-15deg);
+          transform: skewX(-15deg);
+  -webkit-transform-origin: bottom center;
+      -ms-transform-origin: bottom center;
+          transform-origin: bottom center;
+  -webkit-animation-name: clear-fill-btn;
+          animation-name: clear-fill-btn;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+}
+
+.btn:hover::before {
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-name: fill-btn;
+          animation-name: fill-btn;
+}
+
+@-webkit-keyframes fill-btn {
+  from {
+    left: -55%;
+  }
+  to {
+    left: -5%;
+  }
+}
+
+@keyframes fill-btn {
+  from {
+    left: -55%;
+  }
+  to {
+    left: -5%;
+  }
+}
+
+@-webkit-keyframes clear-fill-btn {
+  from {
+    left: -5%;
+  }
+  to {
+    left: -55%;
+  }
+}
+
+@keyframes clear-fill-btn {
+  from {
+    left: -5%;
+  }
+  to {
+    left: -55%;
+  }
 }
 
 a {
+  background-image: -webkit-linear-gradient(345deg, rgba(66, 66, 66, 0.1), rgba(217, 255, 0, 0.5) 50%, rgba(80, 80, 80, 0.5) 50%);
+  background-image: -o-linear-gradient(345deg, rgba(66, 66, 66, 0.1), rgba(217, 255, 0, 0.5) 50%, rgba(80, 80, 80, 0.5) 50%);
   background-image: linear-gradient(105deg, rgba(66, 66, 66, 0.1), rgba(217, 255, 0, 0.5) 50%, rgba(80, 80, 80, 0.5) 50%);
   padding: 1rem 1.5rem;
   border-radius: 100px;
 }
+
 a:hover {
+  background-image: -webkit-linear-gradient(345deg, rgba(66, 66, 66, 0.1), rgba(217, 255, 0, 0.5) 100%);
+  background-image: -o-linear-gradient(345deg, rgba(66, 66, 66, 0.1), rgba(217, 255, 0, 0.5) 100%);
   background-image: linear-gradient(105deg, rgba(66, 66, 66, 0.1), rgba(217, 255, 0, 0.5) 100%);
+  -webkit-transition: all 2s;
+  -o-transition: all 2s;
   transition: all 2s;
 }
 
 .navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   max-height: 10rem;
 }
+
 .navbar_items {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-evenly;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
+
 .navbar_items a {
   margin: 0 5px;
 }
+
 .navbar img {
   max-width: 10rem;
 }
+
 .navbar a {
   font-size: 2rem;
 }
@@ -80,15 +180,26 @@ a:hover {
 .header {
   height: 50vh;
   max-width: 100%;
+  background-image: -webkit-linear-gradient(345deg, rgba(66, 66, 66, 0.1), rgba(217, 255, 0, 0.5) 50%, rgba(80, 80, 80, 0.5) 50%), url(../assets/header-bg.jpg);
+  background-image: -o-linear-gradient(345deg, rgba(66, 66, 66, 0.1), rgba(217, 255, 0, 0.5) 50%, rgba(80, 80, 80, 0.5) 50%), url(../assets/header-bg.jpg);
   background-image: linear-gradient(105deg, rgba(66, 66, 66, 0.1), rgba(217, 255, 0, 0.5) 50%, rgba(80, 80, 80, 0.5) 50%), url(../assets/header-bg.jpg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .header-title {
+  background-image: -webkit-linear-gradient(240deg, rgba(66, 66, 66, 0.1), rgba(217, 255, 0, 0.5) 50%, rgba(80, 80, 80, 0.5) 50%);
+  background-image: -o-linear-gradient(240deg, rgba(66, 66, 66, 0.1), rgba(217, 255, 0, 0.5) 50%, rgba(80, 80, 80, 0.5) 50%);
   background-image: linear-gradient(210deg, rgba(66, 66, 66, 0.1), rgba(217, 255, 0, 0.5) 50%, rgba(80, 80, 80, 0.5) 50%);
   color: white;
   font-size: 3rem;
@@ -100,18 +211,32 @@ a:hover {
 
 .top-sellers {
   margin-top: 10rem;
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+  -ms-grid-columns: (minmax(30%, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
   gap: 2rem;
 }
+
 .top-sellers_card {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 0 8px black;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-shadow: 0 0 8px black;
+          box-shadow: 0 0 8px black;
   padding: 1rem;
 }
+
 .top-sellers_card img {
   width: 100%;
   height: 200px;
@@ -119,6 +244,7 @@ a:hover {
      object-fit: contain;
   padding: 1rem;
 }
+
 .top-sellers_title {
   font-size: 2rem;
   margin: 1rem 0;
@@ -127,69 +253,99 @@ a:hover {
 .footer {
   margin-top: 10rem;
   padding: 2rem;
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: 6fr 3fr 3fr;
-  background-color: rgb(158, 37, 37);
+  -ms-grid-columns: 6fr 3fr 3fr;
+      grid-template-columns: 6fr 3fr 3fr;
+  background-color: #9e2525;
   color: white;
   font-size: 1.5rem;
 }
+
 .footer div img {
   width: 5rem;
 }
+
 .footer_menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
+
 .footer_menu a {
   margin-bottom: 3px;
 }
 
 .product-details {
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
   margin: 10rem 0;
   gap: 2rem;
-  align-items: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
+
 .product-details > div {
   padding: 1rem;
   background-color: white;
 }
+
 .product-details_gallery img {
   width: 100%;
   height: 300px;
   -o-object-fit: contain;
      object-fit: contain;
 }
+
 .product-details_gallery .image-gallery {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   gap: 5px;
 }
+
 .product-details_gallery .image-gallery img {
   height: 150px;
-  box-shadow: 0 0 8px black;
+  -webkit-box-shadow: 0 0 8px black;
+          box-shadow: 0 0 8px black;
 }
+
 .product-details_info h2 {
   font-size: 2.15rem;
 }
+
 .product-details_info .product-table {
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  -ms-grid-rows: (1fr)[4];
+      grid-template-rows: repeat(4, 1fr);
 }
+
 .product-details_info .product-table p {
   margin: 0;
   font-weight: 700;
   line-height: 1.5;
   border-bottom: 1px solid grey;
 }
+
 .product-details_info .product-table p:nth-child(even) {
   text-align: right;
 }
+
 .product-details_info p {
   font-size: 2rem;
   margin: 1rem 0;
 }
+
 .product-details_info button {
   width: 100%;
   padding: 1rem;
@@ -200,53 +356,88 @@ a:hover {
 
 .cart {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   margin-top: 10rem;
 }
+
 .cart img {
   width: 150px;
   height: 150px;
   -o-object-fit: cover;
      object-fit: cover;
 }
+
 .cart_details {
   width: 40%;
   height: 20rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   padding-left: 5%;
   font-size: 2rem;
 }
+
 .cart_products {
   width: 60%;
   padding: 10px;
 }
+
 .cart_products--item {
-  box-shadow: 0 5px 8px black;
+  -webkit-box-shadow: 0 5px 8px black;
+          box-shadow: 0 5px 8px black;
   margin: 10px;
   height: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 3px 0;
 }
+
 .cart .item-details {
   height: 100%;
   width: 100%;
   margin-left: 10%;
   font-size: 1.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
+
 .cart .item-details .count {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .cart .item-details .count > * {
   margin-right: 5px;
 }
+
 .cart .item-details .count button {
   width: 30px;
 }
@@ -256,6 +447,7 @@ a:hover {
   margin-top: 5%;
   line-height: 5rem;
 }
+
 .noItems p {
   font-size: 2rem;
   text-transform: uppercase;
@@ -263,57 +455,101 @@ a:hover {
 
 .contact-page .form_section {
   margin-top: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   gap: 4%;
-  align-items: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   padding: 0 10px;
 }
+
 .contact-page .form_section form {
   gap: 3px;
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: "fn ls" "email email" "message message";
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas: "fn ls" "email email" "message message";
 }
+
 .contact-page .form_section form p {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .contact-page .form_section form > *:not(p) {
   border-radius: 10px;
   outline: none;
   border: 1px solid black;
   padding: 10px 10px;
 }
-.contact-page .form_section form input[name=firstname] {
+
+.contact-page .form_section form input[name="firstname"] {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
   grid-area: fn;
 }
-.contact-page .form_section form input[name=lastname] {
+
+.contact-page .form_section form input[name="lastname"] {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
   grid-area: ls;
 }
-.contact-page .form_section form input[name=email] {
+
+.contact-page .form_section form input[name="email"] {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
   grid-area: email;
 }
-.contact-page .form_section form [name=message] {
+
+.contact-page .form_section form [name="message"] {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
   grid-area: message;
   height: 9em;
   resize: none;
 }
+
 .contact-page .form_section .contact_info {
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: "adress email" "phone phone";
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas: "adress email" "phone phone";
 }
+
 .contact-page .form_section .contact_info .box-adress {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
   grid-area: adress;
 }
+
 .contact-page .form_section .contact_info .box-email {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
   grid-area: email;
 }
+
 .contact-page .form_section .contact_info .box-phone {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
   grid-area: phone;
 }
+
 .contact-page .form_section .contact_info > * {
   border: 1px solid black;
   margin: 3px;
@@ -321,10 +557,14 @@ a:hover {
   padding: 10px;
   text-align: center;
 }
+
 .contact-page .form_section .contact_info i {
   font-size: 30px;
   color: red;
 }
+
 .contact-page .form_section .contact_info i svg {
-  filter: drop-shadow(0 0 5px red);
-}/*# sourceMappingURL=index.css.map */
+  -webkit-filter: drop-shadow(0 0 5px red);
+          filter: drop-shadow(0 0 5px red);
+}
+/*# sourceMappingURL=index.css.map */

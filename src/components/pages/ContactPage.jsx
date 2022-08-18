@@ -1,63 +1,53 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import Header from "../Header";
 import { ImLocation } from "react-icons/im";
 import { AiOutlineMail } from "react-icons/ai";
 import { AiOutlinePhone } from "react-icons/ai";
 
+const errStyle = { border: "1px solid red" };
+const initialState ={
+  firstname: "",
+  lastname: "",
+  email: "",
+  message: "",
+}
+
 function ContactPage() {
-  let error = useRef();
-  let firstname = useRef();
-  let lastname = useRef();
-  let email = useRef();
-  let message = useRef();
+  const [errInput, setErrInput] = useState({
+    firstname: false,
+    lastname: false,
+    email: false,
+    message: false,
+  });
 
   const [errorText, setErrorText] = useState(false);
-  const [disabled, setDisabled] = useState(true);
-  const [inputValues, setInputValue] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
-    message: "",
-  });
+  const [isSent, setIsSent] = useState(false);
+  const [inputValues, setInputValue] = useState(initialState);
 
   function setFormData(e) {
     let copyInputValues = { ...inputValues };
     copyInputValues[e.target.name] = e.target.value;
     setInputValue(copyInputValues);
+    validateInput(e);
   }
 
-  function validateForm(e, input) {
-    if (e.target.value === "") {
-      input.current.style.border = "1px solid red";
-      setErrorText(true);
-    } else {
-      input.current.style.border = "1px solid black";
-      setErrorText(false);
-    }
-
-    if (
-      inputValues.firstname !== "" &&
-      inputValues.firstname.length > 1 &&
-      inputValues.lastname !== "" &&
-      inputValues.lastname.length > 1 &&
-      inputValues.email !== "" &&
-      inputValues.email.length > 1 &&
-      inputValues.message !== "" &&
-      inputValues.message.length > 1
-    ) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
+  function validateInput(e) {
+    let copyErrInput = { ...errInput };
+    copyErrInput[e.target.name] = !e.target.value;
+    setErrInput(copyErrInput);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    firstname.current.value = "";
-    lastname.current.value = "";
-    email.current.value = "";
-    message.current.value = "";
-    setDisabled(true);
+    let testErr = !inputValues.firstname || !inputValues.lastname || !inputValues.email || !inputValues.message
+    if (testErr) {
+      setErrorText(true)
+    }else{
+      setIsSent(true)
+      setErrorText(false)
+      setInputValue(initialState)
+      setTimeout(() => setIsSent(false),3000)
+    }
   }
 
   return (
@@ -67,46 +57,47 @@ function ContactPage() {
       <section className="form_section">
         <form onSubmit={handleSubmit}>
           <input
-            ref={firstname}
-            onChange={(e) => {
+            onInput={(e) => {
               setFormData(e);
-              validateForm(e, firstname);
             }}
             name="firstname"
             type="text"
             placeholder="First name"
-          />
+            style={errInput.firstname ? errStyle : null}
+            value={inputValues.firstname}
+            />
           <input
-            ref={lastname}
-            onChange={(e) => {
+            onInput={(e) => {
               setFormData(e);
-              validateForm(e, lastname);
             }}
             name="lastname"
             type="text"
             placeholder="Last name"
-          />
+            style={errInput.lastname ? errStyle : null}
+            value={inputValues.lastname}
+            />
           <input
-            ref={email}
-            onChange={(e) => {
+            onInput={(e) => {
               setFormData(e);
-              validateForm(e, email);
             }}
             name="email"
             type="email"
             placeholder="Email"
-          />
+            style={errInput.email ? errStyle : null}
+            value={inputValues.email}
+            />
           <textarea
-            ref={message}
-            onChange={(e) => {
+            onInput={(e) => {
               setFormData(e);
-              validateForm(e, message);
             }}
             name="message"
             placeholder="your text"
+            style={errInput.message ? errStyle : null}
+            value={inputValues.message}
           ></textarea>
-          <button disabled={disabled}>Submit</button>
+          <button>Submit</button>
           {errorText ? <p>All field are requred</p> : null}
+          {isSent ? <p>Message is send.</p> : null}
         </form>
 
         <div className="contact_info">

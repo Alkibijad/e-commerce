@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext,  useState } from "react";
 import { dataContext } from "../App";
 
-function BtnAddToCart({ id }) {
+function BtnAddToCart({ product }) {
   const { dispatch } = useContext(dataContext);
   const [btnSwitch, setBtnSwitch] = useState(false);
 
@@ -9,7 +9,7 @@ function BtnAddToCart({ id }) {
 
   function btnEVO() {
     setBtnSwitch(true);
-    dispatch({ type: "add_to_cart", payload: id });
+    dispatch({ type: "add_to_cart", payload: product });
     setTimeout(() => {
       setBtnSwitch(false);
     }, 1000);
@@ -17,7 +17,7 @@ function BtnAddToCart({ id }) {
 
   return (
     <>
-      {!btnSwitch ? (<button className="btn" onClick={btnEVO}>Add to cart</button>)
+      {!btnSwitch ? (<button className="btn" onClick={btnEVO}><span>Add to cart</span></button>)
         : (<button className="btn"> added</button>)}
     </>
   );

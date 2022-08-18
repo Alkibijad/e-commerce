@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { dataContext } from "../App";
 import Header from "./Header";
@@ -8,10 +8,8 @@ import Header from "./Header";
 function ShopCart() {
   const { cartProducts, dispatch } = useContext(dataContext);
 
-
   useEffect(() => {
     totalCartPrice();
-    console.log(cartProducts);
   }, [cartProducts]);
 
   function totalCartPrice() {
