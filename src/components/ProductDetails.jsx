@@ -1,26 +1,25 @@
-import { useParams,  } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { dataContext } from "../App";
 import { useEffect, useState, useContext, useRef } from "react";
 import Header from "./Header";
-import { dataContext } from "../App";
-import Product from "./Product";
+import BtnAddToCart from "./BtnAddToCart";
 
 function ProductDetails() {
-  const { db, dispatch } = useContext(dataContext);
-
-  let button = useRef();
+  const { db, dispatchSelected, selectedProduct } = useContext(dataContext);
   const thumbnail = useRef();
   const { id } = useParams();
-  const [selectedProduct, setSelectedProduct] = useState({});
-  const [btnSwitch, setBtnSwitch] = useState(false);
-
+ 
   useEffect(() => {
     findProduct();
   }, []);
-  
+
   function findProduct() {
-    setSelectedProduct(db.find((el) => el.id === parseInt(id)));
+    dispatchSelected({
+      type: "set_selected_product",
+      payload: db.find((el) => el.id === parseInt(id)),
+    });
   }
-  
+
   function showAllImages() {
     return selectedProduct.images.map((el, index) => (
       <div key={index}>
@@ -31,18 +30,6 @@ function ProductDetails() {
 
   function swipeThumbnail(e) {
     thumbnail.current.src = e.target.src;
-  }
-
-  function btnEVO() {
-    setBtnSwitch(true);
-   
-    dispatch({ type: "add_to_cart", payload: selectedProduct });
-   
-
-
-    setTimeout(() => {
-      setBtnSwitch(false);
-    }, 1000);
   }
 
   function displayProduct() {
@@ -57,9 +44,7 @@ function ProductDetails() {
           <div className="image-gallery">{showAllImages()}</div>
         </div>
         <div className="product-details_info">
-     
           <h2>{selectedProduct.title}</h2>
-
           <div className="product-table">
             <p>Price</p>
             <p>{selectedProduct.price}</p>
@@ -71,11 +56,7 @@ function ProductDetails() {
             <p>{selectedProduct.rating}</p>
           </div>
           <p>{selectedProduct.description}</p>
-
-          {!btnSwitch ? (
-            <button onClick={ btnEVO }>Add To Cart</button>) : (
-            <button>{selectedProduct.count} added</button>
-          )}
+          <BtnAddToCart /> 
         </div>
       </div>
     );
@@ -84,8 +65,7 @@ function ProductDetails() {
   return (
     <div>
       <Header title={selectedProduct.title} />
-
-      {selectedProduct.id && displayProduct()}
+      {selectedProduct.id ? displayProduct() : null}
     </div>
   );
 }

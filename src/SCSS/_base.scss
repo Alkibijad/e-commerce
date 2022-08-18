@@ -4,44 +4,67 @@
     box-sizing: border-box;
 }
 
-
-
-$color-purple: rgba(55, 0, 255);
-$color-grey: rgba(128, 128, 128);
-$color-white: rgba(255, 255, 255);
-
-
-
-
+$color-purple: rgb(217, 255, 0);
+$color-grey: rgb(80, 80, 80);
+$color-white: rgb(66, 66, 66);
+$color-footer-backgound: rgb(158, 37, 37);
 
 html {
     font-size: 62.5%;
 }
 
 body,
+
 a,
-li {
-    color: black;
+li, .btn {
+    color: rgb(155, 51, 51);
+    font-size: 1.5rem;
 }
 
 .App {
     max-width: 140rem;
     min-height: 100vh;
     height: 100%;
-
     margin: 0 auto;
-    background-color: #ddd;
+    background-color: rgb(250, 250, 250);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 a {
-
     text-decoration: none;
-
 }
 
 li {
     list-style: none;
+    margin: 5px 0;
+}
+
+.btn {
+    background-image: linear-gradient(105deg, rgba($color-white, .1), rgba($color-purple, .5) 50%, rgba($color-grey, .5) 50%);
+    padding: 1rem 1.5rem;
+    border-radius: 100px;
+    border: none;
+    margin: 5px 0;
+
+    &:hover {
+        background-image: linear-gradient(105deg, rgba($color-white, .1), rgba($color-purple, .5) 100%);
+        transition: all 2s;
+    }
+}
+
+a {
+    background-image: linear-gradient(105deg, rgba($color-white, .1), rgba($color-purple, .5) 50%, rgba($color-grey, .5) 50%);
+    padding: 1rem 1.5rem;
+    border-radius: 100px;
+    
+
+    &:hover {
+
+        background-image: linear-gradient(105deg, rgba($color-white, .1), rgba($color-purple, .5) 100%);
+        transition: all 2s;
+
+
+    }
 }

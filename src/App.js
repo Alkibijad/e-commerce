@@ -42,8 +42,17 @@ function reducer(cartProducts, action) {
   }
 }
 
+function reducerSelected(selectedProduct, action) {
+  switch (action.type) { 
+    case "set_selected_product":
+      return {...selectedProduct}, action.payload
+  }
+ }
+
+
 function App() {
   const [cartProducts, dispatch] = useReducer(reducer, []);
+  const [selectedProduct, dispatchSelected] = useReducer(reducerSelected, {})
 
   useEffect(() => {
     console.log(cartProducts);
@@ -51,7 +60,7 @@ function App() {
 
   return (
     <div className="App">
-      <dataContext.Provider value={{ db, dispatch, cartProducts }}>
+      <dataContext.Provider value={{ db, dispatch, dispatchSelected, selectedProduct, cartProducts }}>
         <Navigation />
         <Routes>
           <Route path="/" element={<HomePage />} />
