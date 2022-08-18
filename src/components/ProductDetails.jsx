@@ -16,7 +16,7 @@ function ProductDetails() {
   function findProduct() {
     dispatchSelected({
       type: "set_selected_product",
-      payload: db.find((el) => el.id === parseInt(id)),
+      payload: parseInt(id),
     });
   }
 
@@ -56,7 +56,7 @@ function ProductDetails() {
             <p>{selectedProduct.rating}</p>
           </div>
           <p>{selectedProduct.description}</p>
-          <BtnAddToCart  /> 
+          <BtnAddToCart id={selectedProduct.id} /> 
         </div>
       </div>
     );

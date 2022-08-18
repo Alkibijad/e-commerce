@@ -1,13 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import { dataContext } from "../App";
 
-function BtnAddToCart() {
-  const { dispatch, selectedProduct } = useContext(dataContext);
+function BtnAddToCart({ id }) {
+  const { dispatch, selectedProduct,dispatchSelected } = useContext(dataContext);
   const [btnSwitch, setBtnSwitch] = useState(false);
 
   useEffect(() => {
-    console.log(selectedProduct);
-  }, []);
+    findProduct()
+  }, [selectedProduct]);
+
+  function findProduct() {
+    dispatchSelected({
+      type: "set_selected_product",
+      payload: id,
+    });
+  }
 
   function btnEVO() {
     setBtnSwitch(true);

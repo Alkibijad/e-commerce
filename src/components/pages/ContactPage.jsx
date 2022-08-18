@@ -49,19 +49,17 @@ function ContactPage() {
     } else {
       setDisabled(true);
     }
-
-    console.log(inputValues);
   }
 
   function handleSubmit(e) {
-    e.preventDefault()
-      firstname.current.value = ""
-      lastname.current.value = ""
-      email.current.value = ""
-    message.current.value = ""
-    setDisabled(true)
+    e.preventDefault();
+    firstname.current.value = "";
+    lastname.current.value = "";
+    email.current.value = "";
+    message.current.value = "";
+    setDisabled(true);
   }
-  
+
   return (
     <div className="contact-page">
       <Header title="Give us a call" />

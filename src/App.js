@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useDebugValue, useEffect, useReducer } from "react";
 
 //Import components
 import Navigation from "./components/Navigation";
@@ -33,10 +33,11 @@ function reducer(cartProducts, action) {
         action.payload.count = 1;
         return [...cartProducts, action.payload];
       }
+
     case "delete_item":
       const copyCartr = [...cartProducts];
       copyCartr.splice(action.payload, 1);
-      return [...copyCartr];//spread operator
+      return [...copyCartr];
     case "setCart":
       return [...action.payload]
   }
@@ -45,7 +46,7 @@ function reducer(cartProducts, action) {
 function reducerSelected(selectedProduct, action) {
   switch (action.type) { 
     case "set_selected_product":
-      return {...selectedProduct}, action.payload
+      return {...selectedProduct}, db.find((el) => el.id === action.payload)
   }
  }
 
@@ -55,7 +56,7 @@ function App() {
   const [selectedProduct, dispatchSelected] = useReducer(reducerSelected, {})
 
   useEffect(() => {
-    console.log(cartProducts);
+  
   }, [cartProducts]);
 
   return (
