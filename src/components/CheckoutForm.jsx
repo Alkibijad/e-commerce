@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { dataContext } from "../App";
 
 const errStyle = { border: "1px solid red" };
 const initialState = {
@@ -8,7 +9,9 @@ const initialState = {
   message: "",
 };
 
-function CheckoutForm() {
+function CheckoutForm({ setToCheckout }) {
+  const { dispatch } = useContext(dataContext);
+  
   const [errInput, setErrInput] = useState({
     firstname: false,
     lastname: false,
@@ -94,7 +97,7 @@ function CheckoutForm() {
           style={errInput.message ? errStyle : null}
           value={inputValues.message}
         ></textarea>
-              <button>Submit</button>
+        <button onClick={() => { setToCheckout(false); dispatch({ type: "checkout", payload: [] })}}>Submit</button>
         {errorText ? <p>All field are requred</p> : null}
         {isSent ? <p>Message is send.</p> : null}
       </form>

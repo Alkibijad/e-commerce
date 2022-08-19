@@ -1,13 +1,16 @@
-import React from 'react'
-import ContactPage from './pages/ContactPage'
+import React from 'react';
+import CheckoutForm from "./CheckoutForm"
 
-function CheckoutForm({ setToCheckout}) {
+
+function CheckoutView({ setToCheckout}) {
   return (
-      <div className='checkout-form'>
+    <div className='checkout-form'>
       
-          <button onClick={() => { setToCheckout(false)}}>checkout</button>
+      <CheckoutForm setToCheckout={ setToCheckout} />
+      
+       
     </div>
   )
 }
 
-export default CheckoutForm
+export default CheckoutView

@@ -40,6 +40,8 @@ function reducer(cartProducts, action) {
       return [...copyCartr];
     case "setCart":
       return [...action.payload];
+    case "checkout":
+      return [...action.payload]
     default:
       break;
   }

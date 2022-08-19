@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { dataContext } from "../App";
-import CheckoutForm from "./CheckoutView";
+import CheckoutView from "./CheckoutView";
 import Header from "./Header";
 
 
@@ -13,7 +13,7 @@ function ShopCart() {
 
   useEffect(() => {
     totalCartPrice();
-  });
+  },[cartProducts]);
 
   function totalCartPrice() {
     let totalPrice = 0;
@@ -61,7 +61,7 @@ function ShopCart() {
           <p>Total:${totalCartPrice().price}</p>
           <button onClick={checkout}>checkout</button>
 
-          {toCheckout && <CheckoutForm setToCheckout={ setToCheckout} />}
+          {toCheckout && <CheckoutView setToCheckout={ setToCheckout} />}
          
 
 
