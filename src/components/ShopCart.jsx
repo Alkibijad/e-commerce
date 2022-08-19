@@ -4,16 +4,13 @@ import { dataContext } from "../App";
 import CheckoutView from "./CheckoutView";
 import Header from "./Header";
 
-
-
 function ShopCart() {
   const { cartProducts, dispatch } = useContext(dataContext);
-  const [toCheckout, setToCheckout] = useState(false)
-
+  const [toCheckout, setToCheckout] = useState(false);
 
   useEffect(() => {
     totalCartPrice();
-  },[cartProducts]);
+  }, [cartProducts]);
 
   function totalCartPrice() {
     let totalPrice = 0;
@@ -32,7 +29,6 @@ function ShopCart() {
 
     copyCartProducts[index].count += num;
 
-    
     if (copyCartProducts[index].count === 0) {
       copyCartProducts.splice(index, 1);
     }
@@ -49,8 +45,8 @@ function ShopCart() {
     );
   }
 
-  function checkout() { 
-    setToCheckout(true)
+  function checkout() {
+    setToCheckout(true);
   }
   function cart() {
     return (
@@ -59,12 +55,11 @@ function ShopCart() {
           <h2>Your cart:</h2>
           <p>Total items: {totalCartPrice().itemNum}</p>
           <p>Total:${totalCartPrice().price}</p>
-          <button onClick={checkout}>checkout</button>
+          <button className="btn" onClick={checkout}>
+            checkout
+          </button>
 
-          {toCheckout && <CheckoutView setToCheckout={ setToCheckout} />}
-         
-
-
+          {toCheckout && <CheckoutView setToCheckout={setToCheckout} />}
         </div>
         <div className="cart_products">
           {cartProducts.map((el, index) => {
@@ -76,12 +71,27 @@ function ShopCart() {
                   <Link to={"/Shop/" + el.id}>{el.title}</Link>
                   <p>$ {el.price}</p>
                   <div className="count">
-                    <button onClick={() => { changeCount(-1, index)}}> - </button>
+                    <button
+                      onClick={() => {
+                        changeCount(-1, index);
+                      }}
+                    >
+                      {" "}
+                      -{" "}
+                    </button>
                     <p>{el.count}</p>
-                    <button onClick={() => {changeCount(1, index)}}> + </button>
+                    <button
+                      onClick={() => {
+                        changeCount(1, index);
+                      }}
+                    >
+                      {" "}
+                      +{" "}
+                    </button>
                   </div>
 
                   <button
+                    className="btn"
                     onClick={() => {
                       dispatch({ type: "delete_item", payload: index });
                     }}
