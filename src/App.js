@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { createContext, useDebugValue, useEffect, useReducer } from "react";
+import { createContext, useReducer } from "react";
 
 //Import components
 import Navigation from "./components/Navigation";
@@ -19,46 +19,57 @@ export const dataContext = createContext();
 function reducer(cartProducts, action) {
   switch (action.type) {
     case "add_to_cart":
-    
-      const productFounded = db.find((el) => el.id === action.payload)
-      return [...cartProducts, productFounded]
-     
-      // if (productFounded) {
-      //   productFounded.count++;
-      //   return [...cartProducts];
-      // } else {
-      //   productFounded.count = 1;
-      //   return [...cartProducts, productFounded];
-      // }
+      let selectedProduct = action.payload;
+      let cartProductIndex = null;
+      let productFounded = cartProducts.find((el, index) => {
+        cartProductIndex = index;
+        return el.id === selectedProduct.id;
+      });
+
+      if (productFounded) {
+        cartProducts[cartProductIndex].count++;
+        return [...cartProducts];
+      } else {
+        selectedProduct.count = 1;
+        return [...cartProducts, selectedProduct];
+      }
 
     case "delete_item":
       const copyCartr = [...cartProducts];
       copyCartr.splice(action.payload, 1);
       return [...copyCartr];
     case "setCart":
-      return [...action.payload]
+      return [...action.payload];
+    default:
+      break;
   }
 }
 
 function reducerSelected(selectedProduct, action) {
-  switch (action.type) { 
-    
+  switch (action.type) {
     case "set_selected_product":
-      console.log(selectedProduct)
-      return {...selectedProduct}, db.find((el) => el.id === action.payload)
+      let founded = db.find((el) => el.id === action.payload);
+      return { ...selectedProduct, founded };
+    default:
+      break;
   }
- }
-
+}
 
 function App() {
   const [cartProducts, dispatch] = useReducer(reducer, []);
-  const [selectedProduct, dispatchSelected] = useReducer(reducerSelected, {})
-
-
+  const [selectedProduct, dispatchSelected] = useReducer(reducerSelected, {});
 
   return (
     <div className="App">
-      <dataContext.Provider value={{ db, dispatch, dispatchSelected, selectedProduct, cartProducts }}>
+      <dataContext.Provider
+        value={{
+          db,
+          dispatch,
+          dispatchSelected,
+          selectedProduct,
+          cartProducts,
+        }}
+      >
         <Navigation />
         <Routes>
           <Route path="/" element={<HomePage />} />

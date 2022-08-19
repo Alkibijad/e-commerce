@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { dataContext } from "../App";
-import { useEffect, useState, useContext, useRef } from "react";
+import { useEffect, useContext, useRef } from "react";
 import Header from "./Header";
 import BtnAddToCart from "./BtnAddToCart";
 
@@ -14,7 +14,7 @@ function ProductDetails() {
 
   useEffect(() => { 
     findProduct()
-  },[selectedProduct])
+  })
 
   function findProduct() {
  
@@ -27,7 +27,7 @@ function ProductDetails() {
   function showAllImages() {
     return selectedProduct.images.map((el, index) => (
       <div key={index}>
-        <img src={el} alt="image" onMouseOver={swipeThumbnail} />
+        <img src={el} alt="" onMouseOver={swipeThumbnail} />
       </div>
     ));
   }
@@ -43,7 +43,7 @@ function ProductDetails() {
           <img
             ref={thumbnail}
             src={selectedProduct.thumbnail}
-            alt="product image"
+            alt=""
           />
           <div className="image-gallery">{showAllImages()}</div>
         </div>

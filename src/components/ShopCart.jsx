@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { dataContext } from "../App";
 import Header from "./Header";
@@ -11,8 +11,7 @@ function ShopCart() {
 
   useEffect(() => {
     totalCartPrice();
-    console.log(cartProducts);
-  }, [cartProducts]);
+  });
 
   function totalCartPrice() {
     let totalPrice = 0;

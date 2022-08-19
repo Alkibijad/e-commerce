@@ -10,8 +10,8 @@ const {db} = useContext(dataContext)
     <div>
       <Header title="Buy local products" />
       <div className="top-sellers">
-        {db.map((el) => (
-          <Product key={el.id} product={el} />
+        {db.map((el, index) => (
+          <Product key={index} product={el} />
         ))}
       </div>
     </div>

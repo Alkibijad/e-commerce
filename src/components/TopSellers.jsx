@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { dataContext } from "../App";
 import Product from "./Product";
@@ -6,24 +6,31 @@ import Product from "./Product";
 
 
 function TopSellers() {
-  
+
   const { db} = useContext(dataContext)
+  const [topProducts, setTopProducts] = useState([])
+
+  useEffect(() => { 
+    getTopSix()
+  })
+  
 
   function getTopSix() {
     let copyDB = [...db];
-    let topSix = [];
+    let topProduct = []
       for (let i = 0; i < 6; i++) {
       let rand = Math.floor(Math.random() * copyDB.length);
-      topSix.push(copyDB[rand]);
+      topProduct.push(copyDB[rand]);
       copyDB.splice(rand, 1);
     }
-    return topSix;
+    setTopProducts(topProduct)
+  
   }
 
   return (
     <div className="top-sellers">
-      {getTopSix().map((topProduct) => {
-        return <Product key={topProduct.id} product={topProduct} />;
+      {topProducts.length > 0 && topProducts.map((topProduct, index) => {
+        return <Product key={index} product={topProduct} />;
       })}
     </div>
   );
