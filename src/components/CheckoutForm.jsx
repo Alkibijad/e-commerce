@@ -12,7 +12,7 @@ const initialState = {
 
 function CheckoutForm({ setToCheckout }) {
   const { dispatch } = useContext(dataContext);
-  
+
   const [errInput, setErrInput] = useState({
     firstname: false,
     lastname: false,
@@ -53,9 +53,8 @@ function CheckoutForm({ setToCheckout }) {
       setInputValue(initialState);
       setTimeout(() => setIsSent(false), 3000);
     }
-    }
-    
-   
+  }
+
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -79,7 +78,7 @@ function CheckoutForm({ setToCheckout }) {
           type="text"
           placeholder="Last name"
         />
-      
+        <input
           onInput={(e) => {
             setFormData(e);
           }}
@@ -98,7 +97,14 @@ function CheckoutForm({ setToCheckout }) {
           style={errInput.message ? errStyle : null}
           value={inputValues.message}
         ></textarea>
-        <button onClick={() => { setToCheckout(false); dispatch({ type: "checkout", payload: [] })}}>Submit</button>
+        <button
+          onClick={() => {
+            setToCheckout(false);
+            dispatch({ type: "checkout", payload: [] });
+          }}
+        >
+          Submit
+        </button>
         {errorText ? <p>All field are requred</p> : null}
         {isSent ? <p>Message is send.</p> : null}
       </form>
