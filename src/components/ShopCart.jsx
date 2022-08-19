@@ -1,12 +1,14 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { dataContext } from "../App";
+import CheckoutForm from "./CheckoutForm";
 import Header from "./Header";
 
 
 
 function ShopCart() {
   const { cartProducts, dispatch } = useContext(dataContext);
+  const [toCheckout, setToCheckout] = useState(false)
 
 
   useEffect(() => {
@@ -46,6 +48,10 @@ function ShopCart() {
       </div>
     );
   }
+
+  function checkout() { 
+    setToCheckout(true)
+  }
   function cart() {
     return (
       <div className="cart">
@@ -53,6 +59,12 @@ function ShopCart() {
           <h2>Your cart:</h2>
           <p>Total items: {totalCartPrice().itemNum}</p>
           <p>Total:${totalCartPrice().price}</p>
+          <button onClick={checkout}>checkout</button>
+
+          {toCheckout && <CheckoutForm setToCheckout={ setToCheckout} />}
+         
+
+
         </div>
         <div className="cart_products">
           {cartProducts.map((el, index) => {

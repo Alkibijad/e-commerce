@@ -8,7 +8,7 @@ function HomePage() {
   
   return (
     <div className="home-page">
-      <Header title="Welcome to Kosovo Amazon" />
+      <Header title="Welcome our shop" />
       <TopSeller/>
     </div>
   );
