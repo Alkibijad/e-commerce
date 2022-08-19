@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { dataContext } from "../App";
+//test
 
 const errStyle = { border: "1px solid red" };
 const initialState = {
@@ -78,7 +79,7 @@ function CheckoutForm({ setToCheckout }) {
           type="text"
           placeholder="Last name"
         />
-        <input
+      
           onInput={(e) => {
             setFormData(e);
           }}
