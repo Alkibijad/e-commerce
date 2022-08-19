@@ -8,7 +8,7 @@ const initialState = {
   message: "",
 };
 
-function CheckoutForm() {
+function ContactForm() {
   const [errInput, setErrInput] = useState({
     firstname: false,
     lastname: false,
@@ -102,4 +102,4 @@ function CheckoutForm() {
   );
 }
 
-export default CheckoutForm;
+export default ContactForm;
